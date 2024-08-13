@@ -16,7 +16,7 @@ const fetchCountry =async ()=>{
  const response = await getFlags(
     `https://restcountries.com/v3.1/name/${name}`
  )
- setCountry([0])
+ setCountry(response[0])
 }
 
 useEffect(()=>{
