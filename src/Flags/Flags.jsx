@@ -3,6 +3,8 @@ import { Card,CardContent,CardMedia,Container,Grid,TextField,
     FormControl,InputLabel,Select,MenuItem
  } from '@mui/material'
 import { getFlags } from '../service'
+import { Link } from 'react-router-dom'
+
 
 
 const Flags = () => {
@@ -33,7 +35,7 @@ const handleCountry =(e)=>{
   if(countryName.length === 0){
     fetchCountries()
   }
-  if(countryName >=3){
+  if(countryName.length >=3){
     const filterCountries = countries.filter((country)=>
       country.name.common.toUpperCase().includes(countryName.toUpperCase())
     );
@@ -55,7 +57,7 @@ const handleCountry =(e)=>{
          <FormControl fullWidth>
          <InputLabel>Filter by Region</InputLabel>
          <Select onChange={handleRegion} label="Busca Region" fullWidth >
-         <MenuItem value="all">Todas les regiones</MenuItem> 
+         <MenuItem value="all">Todas las regiones</MenuItem> 
           <MenuItem value="africa">Africa</MenuItem>
           <MenuItem value="america">America</MenuItem>
           <MenuItem value="asia">Asia</MenuItem>
@@ -67,6 +69,7 @@ const handleCountry =(e)=>{
          {countries.length > 0 ? (
           countries.map((country)=>(
             <Grid item md={3}>
+              <Link to={`/flags/detail/${country.name.common}`}>
               <Card>
                 <CardMedia
                 component="img"
@@ -74,9 +77,12 @@ const handleCountry =(e)=>{
                 image={country.flags.svg}/>
                 <CardContent>
                   <h4>{country.name.common}</h4>
+                  <p>population:{country.population}</p>
+                  <p>Region:{country.region}</p>
+                  <p>Capital:{country.capital}</p>
                 </CardContent>
               </Card>
-
+              </Link>
             </Grid>
           ))
          ):(<div>
