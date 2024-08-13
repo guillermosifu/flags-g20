@@ -30,9 +30,12 @@ return(
         Back
     </Button>
     {Object.keys(country).length > 0 &&(
-        <Grid container spacing={3}>
-            <Grid item md={6}>
+        <Grid container  spacing={3}>
+            <Grid alignItems={{ alignItems: 'center' }} item md={6}>
         <img src={country.flags.svg} width={400} alt="" />
+            </Grid>
+            <Grid item md={6}>
+            <p>hola</p>
             </Grid>
         </Grid>
     )}
