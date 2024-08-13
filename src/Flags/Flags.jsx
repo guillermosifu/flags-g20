@@ -49,12 +49,12 @@ const handleCountry =(e)=>{
     <Container>
         <Grid container spacing={3} mt={5}>
          <Grid item md={6}>
-         <TextField label="Busca tu pais" fullWidth />
+         <TextField label="Busca tu pais" fullWidth onChange={handleCountry} />
          </Grid>
          <Grid item md={6}>
          <FormControl fullWidth>
          <InputLabel>Filter by Region</InputLabel>
-         <Select label="Busca Region" fullWidth >
+         <Select onChange={handleRegion} label="Busca Region" fullWidth >
          <MenuItem value="all">Todas les regiones</MenuItem> 
           <MenuItem value="africa">Africa</MenuItem>
           <MenuItem value="america">America</MenuItem>
@@ -64,9 +64,25 @@ const handleCountry =(e)=>{
             </Select>
             </FormControl>
          </Grid>
-        </Grid>
-        <div>
-          </div>      
+         {countries.length > 0 ? (
+          countries.map((country)=>(
+            <Grid item md={3}>
+              <Card>
+                <CardMedia
+                component="img"
+                height={200}
+                image={country.flags.svg}/>
+                <CardContent>
+                  <h4>{country.name.common}</h4>
+                </CardContent>
+              </Card>
+
+            </Grid>
+          ))
+         ):(<div>
+          <h4>cargando..</h4>
+         </div>)}
+        </Grid>     
     </Container>
   )
 }
