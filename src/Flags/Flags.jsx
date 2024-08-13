@@ -21,10 +21,26 @@ if(e.target.value === "all"){
     fetchCountries();
     return
 }
-setCountries([])
+setCountries([]);
+const response =await getFlags(
+  `https://restcountries.com/v3.1/region/${e.target.value}`
+);
+setCountries(response)
 }
+//vamos  crear el filtro pa la busqued del pais 
+const handleCountry =(e)=>{
+  const countryName = e.target.value
+  if(countryName.length === 0){
+    fetchCountries()
+  }
+  if(countryName >=3){
+    const filterCountries = countries.filter((country)=>
+      country.name.common.toUpperCase().includes(countryName.toUpperCase())
+    );
+    setCountries(filterCountries)
+  }
 
-
+}
 
 
 
